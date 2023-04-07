@@ -1,5 +1,8 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.core.mail import send_mail,EmailMessage
+from django.contrib.auth.decorators import login_required
+from .models import *
+from django.contrib.auth.models import User
 from django.core.mail import settings
 
 import pymongo
@@ -40,10 +43,31 @@ collection.insert_one(doc)
 
 mascot_details = collection.find({})
 
+@login_required
+def send_invitation(request,id):
+    data = User.objects.all()
+    sender =request.user.username
+    invited_list = invitation.objects.all()
+    print(invited_list)
+    receiver = User.objects.get(id =id).username
+    print(sender)
+    invite = invitation.objects.create(sender = sender, receiver = receiver)
+    invite.invited_by=sender
+    invite.save()
+    return render(request,'invitation.html',{'data':data,'invited_list':invited_list})
+
+@login_required
+def view_invitation(request):
+    data = User.objects.all()
+    invited_list = invitation.objects.all()
+    return render(request,'invitation.html',{'data':data,'invited_list':invited_list})
+    
 
 
+def searchUser(request):
+    data = User.objects.all()
+    print(data)
+    return render(request,'base.html',{'data':data})
 
 
-
-def send_invitation(request):
-    return render(request,'invitation.html')
+    

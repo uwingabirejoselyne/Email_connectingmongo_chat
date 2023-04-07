@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from mongoengine import *
 
 # Create your models here.
@@ -23,15 +24,14 @@ class Chapters(models.Model):
 class Chat(models.Model):
     sender =models.CharField(max_length =255)
     receiver =models.CharField(max_length =255)
-    date = models.DateField()   ``
    
 
 class invitation(models.Model):
     sender =models.CharField(max_length =255)
     receiver =models.CharField(max_length =255)
-    message =models.CharField(max_length =255)
-    accept = models.CharField(max_length =255)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    status_choices = ('pending','pending'),('Accepted','Accepted')
+    status = models.CharField(max_length=10, choices=status_choices, default='pending')
+    invited_by = models.CharField(User,max_length=10, blank=True)
 
 
 class userProfile(models.Model):

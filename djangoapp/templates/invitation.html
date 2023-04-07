@@ -1,26 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="col-sm 6">
-        <form  action="" method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Reciever</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="receiver_username">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Message</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="message">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+{% extends 'base.html' %}
+{% block pagetitle %} manage-student {% endblock %}
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-</body>
-</html>
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Action</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in data %}
+      <tr>
+        <th scope="row"><a href="">{{user.id}}</a></th>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <th scope=""><a href="{% url 'invitation' user.id %}">Invite</a></th>
+        <th scope=""><a href="">Update</a></th>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <p>
+        
+    </p>
+  </table>
+
+
+
+
+{% endblock %}

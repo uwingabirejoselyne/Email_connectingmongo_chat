@@ -14,14 +14,12 @@ class ChaptersAdmin(admin.ModelAdmin):
     list_display = ('id','chapterId','courseId','chaptertitle','Description')
 
 
-
 class ChatAdmin(admin.ModelAdmin):
-    list_display = ('id',)
-
+    list_display = ('id','sender','receiver')
 
 
 class InvitationAdmin(admin.ModelAdmin):
-    list_display = ('id','sender','receiver','message','accept','timestamp')
+    list_display = ('id','sender','receiver','status')
 
 admin.site.register(Students)
 admin.site.register(Course, CourseAdmin)
