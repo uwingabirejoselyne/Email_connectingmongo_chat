@@ -15,7 +15,11 @@ class ChaptersAdmin(admin.ModelAdmin):
 
 
 class ChatAdmin(admin.ModelAdmin):
-    list_display = ('id','sender','receiver')
+    list_display = ('id','sender','receiver','date','message')
+
+
+class FriendshipAdmin(admin.ModelAdmin):
+    list_display = ('id','user1','user2')
 
 
 class InvitationAdmin(admin.ModelAdmin):
@@ -25,6 +29,7 @@ admin.site.register(Students)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Chapters, ChaptersAdmin)
 admin.site.register(Chat, ChatAdmin)
+admin.site.register(Friendship, FriendshipAdmin)
 admin.site.register(invitation, InvitationAdmin)
 
 

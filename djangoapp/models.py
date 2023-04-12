@@ -24,14 +24,22 @@ class Chapters(models.Model):
 class Chat(models.Model):
     sender =models.CharField(max_length =255)
     receiver =models.CharField(max_length =255)
+    date =models.CharField(max_length =255)
+    message =models.CharField(max_length =255)
+    
    
 
 class invitation(models.Model):
     sender =models.CharField(max_length =255)
     receiver =models.CharField(max_length =255)
-    status_choices = ('pending','pending'),('Accepted','Accepted')
+    status_choices = ('pending','pending'),('Accepted','Accepted'),('cancelled','cancelled')
     status = models.CharField(max_length=10, choices=status_choices, default='pending')
     invited_by = models.CharField(User,max_length=10, blank=True)
+
+
+class Friendship(models.Model):
+    user1=models.CharField(max_length =255)
+    user2 =models.CharField(max_length =255)
 
 
 class userProfile(models.Model):

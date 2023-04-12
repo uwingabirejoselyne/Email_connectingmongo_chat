@@ -151,7 +151,7 @@
                                                 <div class="tab-pane fade show active " id="ex2-tabs-1" role="tabpanel"
                                                     aria-labelledby="ex2-tab-1">
                                                     {% for user in data %}
-                                                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                                    <div class="dropdown-item d-flex align-items-center justify-content-between"
                                                         href="#">
                                                         <div class="d-flex">
                                                             <div class="mr-3">
@@ -165,9 +165,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="mx-5">
-                                                            <button>Invite</button>
+                                                            <button class="btn btn-success text-light"><a href="{% url 'invitation' user.id %}">Add Friend</a></button>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                     {% endfor %}
                                                 </div>
                                                 <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel"
@@ -175,8 +175,7 @@
                                                     <div class="tab-pane fade show active " id="ex2-tabs-1" role="tabpanel"
                                                     aria-labelledby="ex2-tab-1">
                                                     {% for user in invited_list%}
-                                                    <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                        href="#">
+                                                    <div class="dropdown-item d-flex align-items-center justify-content-between">
                                                         <div class="d-flex">
                                                             <div class="mr-3">
                                                                 <div class="icon-circle bg-success">
@@ -184,14 +183,15 @@
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                {{user.receiver}}
+                                                                {{user.sender}}
                                                             </div>
                                                         </div>
-                                                        <div class="mx-5">
-                                                            <button class="btn btn-primary">Confirm</button>
-                                                            <button class="btn btn-success">Delete</button>
+                                                        <div class="mx-3">
+                                                        
+                                                            <a href="{% url 'accept' id=user.id  %}"><button class="btn btn-primary">Accept</button></a>
+                                                            <a href="{% url 'cancel' id=user.id  %}"><button class="btn btn-primary">Reject</button></a>
                                                         </div>
-                                                    </a>
+                                                    </div>
                                                     {% endfor %}
                                                 </div>
                                                 </div>

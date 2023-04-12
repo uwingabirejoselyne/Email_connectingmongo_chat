@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Select User To Chat With:</h1>
+    <select id="select" onchange="selectUser();">
+      <option value="">....</option>
+      {% for user in users %}
+     
+      <option value="{{user.username}}">{{user.username}}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="container">
+    <h1>you're chatting with {{name}}:</h1>
+  </div>
+  <div class="container">
+    {% for i in chat %}
+    <img src="/w3images/bandmember.jpg" alt="Avatar">
+    <h2>{{i.name}}</h2>
+    <p>{{i.message}}</p>
+    <span class="time-right">{{i.date}}</span>
+      {% endfor %}
+    
+  </div>
+  
+ 
+  <div class="container darker">
+  <form action="" method="POST">
+    <input type="text" placeholder="Enter a message" name="message">
+    <button type="submit">Send message</button>
+  </form>
+  </div>
+<script>
+  function selectUser(){
+    name=document.getElementById('select').value;
+    url='/home/chat/'+name;
+    window.location.replace(url);
+  }
+</script>
+</body>
+</html>
+  
+  {% endblock  %}
